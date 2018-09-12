@@ -39,4 +39,34 @@ public class SmartMessageApi {
         return WrapMapper.error();
     }
 
+    /**
+     * 确认并发送消息
+     */
+    public Wrapper<?> confirmAndSend() {
+        return WrapMapper.error();
+    }
+
+    /**
+     * 查询状态确认超时的消息
+     */
+    public Wrapper<?> loadConfirmTimeoutMsg() {
+        return WrapMapper.error();
+    }
+
+    /**
+     * 查询消费确认超时的消息
+     */
+    public Wrapper<?> loadPushTimeoutMsg() {
+        return WrapMapper.error();
+    }
+
+    /**
+     * 确认消息已被成功消费
+     */
+    public Wrapper<?> completePushMsg() {
+        return WrapMapper.error();
+    }
+
+    //--------- 消息管理API接口-------------
+
 }
