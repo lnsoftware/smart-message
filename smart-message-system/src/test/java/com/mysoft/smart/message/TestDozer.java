@@ -4,6 +4,8 @@ import lombok.Data;
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
 import org.dozer.Mapping;
+import org.dozer.loader.api.BeanMappingBuilder;
+import org.dozer.loader.api.TypeMappingOptions;
 import org.junit.Test;
 
 import java.util.Date;
@@ -19,11 +21,24 @@ public class TestDozer {
 
     @Test
     public void testDozer() {
-        Mapper mapper = new DozerBeanMapper();
+        BeanMappingBuilder beanMappingBuilder = new BeanMappingBuilder() {
+            @Override
+            protected void configure() {
+                String dateFormat = "yyyyMMddHHmmss";
+                mapping(User.class,
+                        UserDto.class,
+                        TypeMappingOptions.wildcard(true),
+                        TypeMappingOptions.dateFormat(dateFormat)).
+                        fields("date", "date");
+            }
+        };
+        DozerBeanMapper mapper = new DozerBeanMapper();
+        mapper.addMapping(beanMappingBuilder);
+
         User user = new User();
         user.setId("12345678");
         user.setMobile(1389845562L);
-        user.setDate(System.currentTimeMillis() + "");
+        user.setDate("20180913165610");
         UserDto dto = mapper.map(user, UserDto.class);
         System.out.println(dto);
     }
