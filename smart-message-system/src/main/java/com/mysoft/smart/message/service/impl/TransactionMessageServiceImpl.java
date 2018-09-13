@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -98,13 +99,37 @@ public class TransactionMessageServiceImpl implements TransactionMessageService 
      * 根据消息状态和时间偏移量获取消息
      *
      * @param status
-     * @param offset
+     * @param dateOffset
      * @return
      */
     @Override
-    public List<TransactionMessageDto> getMessageByStatusAndDateOffset(MessageStatusType status, Date offset) {
+    @Transactional(rollbackFor = {Exception.class})
+    public List<String> getMessageByStatusAndDateOffset(MessageStatusType status, Date dateOffset) {
+        List<TransactionMessage> transactionMessages = transactionMessageMapper.selectList(new EntityWrapper<TransactionMessage>().
+                eq("status", status.toString()).
+                le("editTime", dateOffset));
+        if (transactionMessages != null && !transactionMessages.isEmpty()) {
+            List<String> result = new ArrayList<String>();
+            for (TransactionMessage tm : transactionMessages) {
+                result.add(tm.getMessageId());
+            }
+            return result;
+        }
         return null;
     }
 
-
+    /**
+     * 确认完成消息的发送
+     *
+     * @param messageId
+     * @return
+     */
+    @Override
+    @Transactional(rollbackFor = {Exception.class})
+    public int consumeMessageSuccess(String messageId) {
+        TransactionMessage param = new TransactionMessage();
+        param.setStatus(MessageStatusType.CONSUME_SUCCESS.toString());
+        return transactionMessageMapper.update(param,
+                new EntityWrapper<TransactionMessage>().eq("messageId", messageId));
+    }
 }

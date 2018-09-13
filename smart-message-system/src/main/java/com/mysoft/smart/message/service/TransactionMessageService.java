@@ -50,11 +50,19 @@ public interface TransactionMessageService {
     public void sendMessage(TransactionMessageDto messageDto);
 
     /**
-     * 根据消息状态和时间偏移量获取消息
+     * 根据消息状态和时间偏移量获取消息Id
      *
      * @param status
      * @param offset
      * @return
      */
-    public List<TransactionMessageDto> getMessageByStatusAndDateOffset(MessageStatusType status, Date offset);
+    public List<String> getMessageByStatusAndDateOffset(MessageStatusType status, Date offset);
+
+    /**
+     * 确认完成消息的发送
+     *
+     * @param messageId
+     * @return
+     */
+    public int consumeMessageSuccess(String messageId);
 }

@@ -52,8 +52,14 @@ public class TransactionMessageDto {
 
     private String remark;
 
+    /** 消息时间-用于查询, 格式yyyyMMddHHmmss */
+    @NotBlank(message = "{message.messageDate.empty.msg}", groups = {APIMessageCheckLoad.class})
+    private String messageDate;
+
     public static interface APIMessageSave{}
 
     public static interface APIMessageCofirm{}
+
+    public static interface APIMessageCheckLoad{}
 
 }
