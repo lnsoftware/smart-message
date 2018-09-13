@@ -112,6 +112,4 @@ public class SmartMessageApi {
         return WrapMapper.error();
     }
 
-    //--------- 消息管理API接口-------------
-
 }
