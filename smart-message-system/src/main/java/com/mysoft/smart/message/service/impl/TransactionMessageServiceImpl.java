@@ -77,6 +77,7 @@ public class TransactionMessageServiceImpl implements TransactionMessageService 
     public TransactionMessageDto confirmMessageStatus(String messageId) {
         TransactionMessage param = new TransactionMessage();
         param.setStatus(MessageStatusType.CONFIRM_SEND.toString());
+        param.setEditTime(new Date());
         int res = transactionMessageMapper.update(param,
                 new EntityWrapper<TransactionMessage>().eq("messageId", messageId));
         if (res > 0) {
@@ -129,6 +130,7 @@ public class TransactionMessageServiceImpl implements TransactionMessageService 
     public int consumeMessageSuccess(String messageId) {
         TransactionMessage param = new TransactionMessage();
         param.setStatus(MessageStatusType.CONSUME_SUCCESS.toString());
+        param.setEditTime(new Date());
         return transactionMessageMapper.update(param,
                 new EntityWrapper<TransactionMessage>().eq("messageId", messageId));
     }
