@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/smart-message-system/pom.xml" />
-        <option value="$PROJECT_DIR$/smart-message-eureka/pom.xml" />
+        <option value="$PROJECT_DIR$/smart-message-confirm/pom.xml" />
+        <option value="$PROJECT_DIR$/smart-message-recover/pom.xml" />
+        <option value="$PROJECT_DIR$/smart-message-admin/pom.xml" />
+        <option value="$PROJECT_DIR$/smart-message-example/pom.xml" />
+        <option value="$PROJECT_DIR$/smart-message-example/mysoft-order-system/pom.xml" />
+        <option value="$PROJECT_DIR$/smart-message-example/mysoft-account-system/pom.xml" />
       </list>
     </option>
   </component>

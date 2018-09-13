@@ -5,6 +5,7 @@ import com.mysoft.smart.message.api.Wrapper;
 import com.mysoft.smart.message.dto.TransactionMessageDto;
 import com.mysoft.smart.message.service.TransactionMessageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -31,8 +32,8 @@ public class SmartMessageApi {
      * @return
      */
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public Wrapper<?> save(@RequestBody TransactionMessageDto bean) {
-        int res = transactionMessageService.saveMessage(bean);
+    public Wrapper<?> save(@Validated(TransactionMessageDto.APIMessageSave.class) @RequestBody TransactionMessageDto bean) {
+        int res = transactionMessageService.createTransactionMessage(bean);
         if (res > 0) {
             return WrapMapper.wrap(Wrapper.SUCCESS_CODE, Wrapper.SUCCESS_MESSAGE);
         }
@@ -40,9 +41,18 @@ public class SmartMessageApi {
     }
 
     /**
-     * 确认并发送消息
+     * 确认状态并发送消息
+     *
+     * @param bean
+     * @return
      */
-    public Wrapper<?> confirmAndSend() {
+    @RequestMapping(value = "/confirm",method = RequestMethod.POST)
+    public Wrapper<?> confirmAndSend(@Validated(TransactionMessageDto.APIMessageCofirm.class) @RequestBody TransactionMessageDto bean) {
+        TransactionMessageDto res = transactionMessageService.confirmMessageStatus(bean.getMessageId());
+        if (res != null) {
+            transactionMessageService.sendMessage(res);
+            return WrapMapper.wrap(Wrapper.SUCCESS_CODE, Wrapper.SUCCESS_MESSAGE);
+        }
         return WrapMapper.error();
     }
 

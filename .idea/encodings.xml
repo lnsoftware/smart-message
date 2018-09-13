@@ -1,9 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="Encoding">
+  <component name="Encoding" defaultCharsetForPropertiesFiles="GBK">
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/smart-message-admin" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/smart-message-common" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/smart-message-confirm" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/smart-message-eureka" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/smart-message-example" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/smart-message-example" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/smart-message-example" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/smart-message-example" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/smart-message-example/mysoft-account-system" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/smart-message-example/mysoft-order-system" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/smart-message-recover" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/smart-message-system" charset="UTF-8" />
     <file url="PROJECT" charset="UTF-8" />
   </component>

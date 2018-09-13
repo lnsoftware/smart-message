@@ -6,16 +6,16 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="mysoft-account-system" />
+        <module name="mysoft-order-system" />
+        <module name="smart-message-admin" />
         <module name="smart-message-common" />
+        <module name="smart-message-confirm" />
         <module name="smart-message-eureka" />
+        <module name="smart-message-example" />
+        <module name="smart-message-recover" />
         <module name="smart-message-system" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="smart-message" target="1.8" />
-      <module name="smart-message-common" target="1.8" />
-      <module name="smart-message-eureka" target="1.8" />
-      <module name="smart-message-system" target="1.8" />
-    </bytecodeTargetLevel>
   </component>
 </project>
