@@ -41,6 +41,8 @@ public class TransactionMessageServiceImpl implements TransactionMessageService 
         BeanUtils.copyProperties(messageDto, entity);
         entity.setVersion(1);
         entity.setCreateTime(new Date());
+        entity.setMessageSendTimes(0);
+        entity.setAreadlyDead("N");
         entity.setStatus(MessageStatusType.PREPARE_SEND.toString());
         // 保存数据库
         return transactionMessageMapper.insert(entity);
@@ -79,7 +81,7 @@ public class TransactionMessageServiceImpl implements TransactionMessageService 
         param.setStatus(MessageStatusType.CONFIRM_SEND.toString());
         param.setEditTime(new Date());
         int res = transactionMessageMapper.update(param,
-                new EntityWrapper<TransactionMessage>().eq("messageId", messageId));
+                new EntityWrapper<TransactionMessage>().eq("message_id", messageId));
         if (res > 0) {
             return getTransactionMessageByMsgId(messageId);
         }
@@ -108,7 +110,7 @@ public class TransactionMessageServiceImpl implements TransactionMessageService 
     public List<String> getMessageByStatusAndDateOffset(MessageStatusType status, Date dateOffset) {
         List<TransactionMessage> transactionMessages = transactionMessageMapper.selectList(new EntityWrapper<TransactionMessage>().
                 eq("status", status.toString()).
-                le("editTime", dateOffset));
+                le("create_time", dateOffset));
         if (transactionMessages != null && !transactionMessages.isEmpty()) {
             List<String> result = new ArrayList<String>();
             for (TransactionMessage tm : transactionMessages) {
@@ -132,6 +134,6 @@ public class TransactionMessageServiceImpl implements TransactionMessageService 
         param.setStatus(MessageStatusType.CONSUME_SUCCESS.toString());
         param.setEditTime(new Date());
         return transactionMessageMapper.update(param,
-                new EntityWrapper<TransactionMessage>().eq("messageId", messageId));
+                new EntityWrapper<TransactionMessage>().eq("message_id", messageId));
     }
 }
