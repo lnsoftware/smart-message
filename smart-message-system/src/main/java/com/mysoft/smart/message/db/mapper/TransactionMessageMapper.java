@@ -1,6 +1,6 @@
-package com.mysoft.smart.message.mapper;
+package com.mysoft.smart.message.db.mapper;
 
-import com.mysoft.smart.message.entity.TransactionMessage;
+import com.mysoft.smart.message.db.entity.TransactionMessage;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 
 /**

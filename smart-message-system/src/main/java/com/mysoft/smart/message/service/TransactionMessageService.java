@@ -2,8 +2,6 @@ package com.mysoft.smart.message.service;
 
 import com.mysoft.smart.message.common.message.MessageStatusType;
 import com.mysoft.smart.message.dto.TransactionMessageDto;
-import com.mysoft.smart.message.entity.TransactionMessage;
-import com.baomidou.mybatisplus.service.IService;
 
 import java.util.Date;
 import java.util.List;

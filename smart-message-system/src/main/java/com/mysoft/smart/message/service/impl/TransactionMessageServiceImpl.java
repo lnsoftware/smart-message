@@ -3,8 +3,8 @@ package com.mysoft.smart.message.service.impl;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.mysoft.smart.message.common.message.MessageStatusType;
 import com.mysoft.smart.message.dto.TransactionMessageDto;
-import com.mysoft.smart.message.entity.TransactionMessage;
-import com.mysoft.smart.message.mapper.TransactionMessageMapper;
+import com.mysoft.smart.message.db.entity.TransactionMessage;
+import com.mysoft.smart.message.db.mapper.TransactionMessageMapper;
 import com.mysoft.smart.message.mq.activemq.Producer;
 import com.mysoft.smart.message.service.TransactionMessageService;
 import org.springframework.beans.BeanUtils;
@@ -12,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;

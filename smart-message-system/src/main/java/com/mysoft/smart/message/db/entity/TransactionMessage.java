@@ -1,4 +1,4 @@
-package com.mysoft.smart.message.entity;
+package com.mysoft.smart.message.db.entity;
 
 import com.baomidou.mybatisplus.enums.IdType;
 import java.util.Date;

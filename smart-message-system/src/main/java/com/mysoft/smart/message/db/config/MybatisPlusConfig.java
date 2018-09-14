@@ -1,4 +1,4 @@
-package com.mysoft.smart.message.config;
+package com.mysoft.smart.message.db.config;
 
 import com.baomidou.mybatisplus.plugins.PaginationInterceptor;
 import org.mybatis.spring.annotation.MapperScan;
