@@ -2,11 +2,13 @@ package com.mysoft.smart.message.web.advice;
 
 import com.mysoft.smart.message.api.WrapMapper;
 import com.mysoft.smart.message.api.Wrapper;
-import org.springframework.messaging.handler.annotation.support.MethodArgumentNotValidException;
+import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,12 +26,12 @@ public class WebExceptionHandler {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseBody
     public Wrapper<?> requestParameterException(MethodArgumentNotValidException ex) {
-        List<String> errors = new ArrayList<String>();
+        StringBuffer sb = new StringBuffer();
         List<FieldError> fieldErrors = ex.getBindingResult().getFieldErrors();
         for (FieldError fieldError : fieldErrors) {
-            errors.add(fieldError.getDefaultMessage());
+            sb.append(fieldError.getDefaultMessage()).append(",");
         }
-        return WrapMapper.wrap(Wrapper.ERROR_CODE, Wrapper.ERROR_MESSAGE, errors);
+        return WrapMapper.wrap(HttpStatus.BAD_REQUEST.value(), sb.toString());
     }
 
 }
