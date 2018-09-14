@@ -98,6 +98,24 @@ public class SmartMessageApi {
     }
 
     /**
+     * 直接发送消息
+     *
+     * @param bean
+     * @return
+     */
+    @RequestMapping(value = "/send", method = RequestMethod.POST)
+    public Wrapper<?> sendMessage(@Validated(TransactionMessageDto.APIMessageSend.class) @RequestBody TransactionMessageDto bean) {
+        // 更新消息状态为确认发送
+        TransactionMessageDto res = transactionMessageService.getTransactionMessageByMsgId(bean.getMessageId());
+        if (res != null) {
+            // 发送消息
+            transactionMessageService.sendMessage(res);
+            return WrapMapper.wrap(Wrapper.SUCCESS_CODE, Wrapper.SUCCESS_MESSAGE);
+        }
+        return WrapMapper.error();
+    }
+
+    /**
      * 确认消息已被成功消费
      *
      * @param bean

@@ -1,11 +1,9 @@
-package com.mysoft.smart.message.dto;
+package com.mysoft.smart.message.bean;
 
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.validator.constraints.NotBlank;
-
-import java.util.Date;
 
 /**
  * 描述:
@@ -31,8 +29,7 @@ public class TransactionMessageDto {
 
     private String createTime;
 
-    @NotBlank(message = "{message.messageId.empty.msg}",
-            groups = {APIMessageSave.class, APIMessageCofirm.class, APIMessageSend.class})
+    @NotBlank(message = "{message.messageId.empty.msg}", groups = {APIMessageSave.class, APIMessageCofirm.class})
     private String messageId;
 
     @NotBlank(message = "{message.messageBody.empty.msg}", groups = {APIMessageSave.class})
@@ -63,5 +60,4 @@ public class TransactionMessageDto {
 
     public static interface APIMessageCheckLoad{}
 
-    public static interface APIMessageSend{}
 }
