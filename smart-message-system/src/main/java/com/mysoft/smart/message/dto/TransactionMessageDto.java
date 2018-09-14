@@ -37,7 +37,7 @@ public class TransactionMessageDto {
     @NotBlank(message = "{message.messageBody.empty.msg}", groups = {APIMessageSave.class})
     private String messageBody;
 
-    @NotBlank(message = "{message.messageBody.empty.msg}", groups = {APIMessageSave.class})
+    @NotBlank(message = "{message.messageDataType.empty.msg}", groups = {APIMessageSave.class})
     private String messageDataType;
 
     @NotBlank(message = "{message.consumerQueue.empty.msg}", groups = {APIMessageSave.class})
